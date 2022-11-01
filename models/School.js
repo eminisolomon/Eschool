@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 
 const SchoolSchema = new Schema(
   {
-    name: {
+    school_name: {
       type: String,
       required: [true, "You must provide a name"],
     },
@@ -80,6 +80,8 @@ const SchoolSchema = new Schema(
   },
   { timestamps: true }
 );
+SchoolSchema.index({ name: "name" });
+let School = mongoose.model("School", SchoolSchema);
 
 SchoolSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
@@ -92,7 +94,5 @@ SchoolSchema.methods.comparePassword = async function (userPassword) {
   const isMatch = await bcrypt.compare(userPassword, this.password);
   return isMatch;
 };
-
-let School = mongoose.model("Adnin", SchoolSchema);
 
 module.exports = School;

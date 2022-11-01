@@ -16,6 +16,10 @@ const AdminSchema = new Schema(
       required: [true, "You must provide a username"],
       unique: [true, "This username already exists"],
     },
+    phone: {
+      type: number,
+      required: true,
+    },
     email: {
       type: String,
       unique: true,
