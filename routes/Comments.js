@@ -3,9 +3,10 @@ const CommentSchema = new mongoose.Schema(
   {
     post: {
       type: mongoose.Types.ObjectId,
+      ref: "Post",
       required: true,
     },
-    replyingTo: {
+    commentTo: {
       type: Array,
       default: [],
     },

@@ -23,6 +23,11 @@ const SchoolSchema = new Schema(
       },
       select: false,
     },
+    password: {
+      type: String,
+      required: [true, "You must provide a password!"],
+      select: false,
+    },
     description: {
         type: String,
     },
