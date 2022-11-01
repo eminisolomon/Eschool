@@ -23,11 +23,6 @@ const SchoolSchema = new Schema(
       },
       select: false,
     },
-    password: {
-      type: String,
-      required: [true, "You must provide a password!"],
-      select: false,
-    },
     description: {
         type: String,
     },
@@ -82,17 +77,5 @@ const SchoolSchema = new Schema(
 );
 SchoolSchema.index({ name: "name" });
 let School = mongoose.model("School", SchoolSchema);
-
-SchoolSchema.pre("save", async function () {
-  if (!this.isModified("password")) return;
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-});
-
-
-SchoolSchema.methods.comparePassword = async function (userPassword) {
-  const isMatch = await bcrypt.compare(userPassword, this.password);
-  return isMatch;
-};
 
 module.exports = School;
