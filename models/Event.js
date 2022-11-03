@@ -10,11 +10,6 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  isReminderSet: {
-    type: Boolean,
-    default: false,
-    required: true,
-  },
   eventDate: {
     type: Number,
     min: [new Date().getTime() + 1, 'Remind time should be bigger than current time'],
@@ -23,10 +18,6 @@ const eventSchema = new mongoose.Schema({
   isCanceled: {
     type: Boolean,
     default: false,
-  },
-  createdDate: {
-    type: Number,
-    default: new Date().getTime()
   },
   school: {
     type: mongoose.Schema.Types.ObjectId,
